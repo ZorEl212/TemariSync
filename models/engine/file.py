@@ -8,18 +8,22 @@ from models.student import Student
 from models.document import Document
 
 class FileStorge:
+    """Class for implementing JSON based file storage"""
 
     __objs = {}
     classes = ['Student', 'Department', 'Course', 'Document', 'BaseModel']
     __path = 'file.json'
 
     def all(self):
+        """Fetch all objects that exist on the file storage"""
         return self.__objs
 
     def new(self, obj):
+        """Add new object to the main dict before saving to File"""
         self.__objs[f"{obj.cls_name}.{obj.id}"] = obj
 
     def save(self):
+        """Save all objects from native dict to a JSON file"""
         objs = deepcopy(self.__objs)
         with open(self.__path, 'w+') as file:
             data = {key: value.to_dict() for key, value in
@@ -27,6 +31,7 @@ class FileStorge:
             dump(data, file)
 
     def reload(self):
+        """Reload objects from JSON file to main dict object"""
         if os.path.exists(self.__path):
             with open(self.__path, 'r') as file:
                 data = load(file)
