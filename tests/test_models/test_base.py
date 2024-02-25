@@ -32,5 +32,20 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(base_model_dict['created_at'], str)
         self.assertIsInstance(base_model_dict['updated_at'], str)
 
+    def test_init_with_kwargs(self):
+        kwargs = {
+            'id': 'test_id',
+            'created_at': '2022-01-01T00:00:00.000000',
+            'updated_at': '2022-01-01T00:00:00.000000',
+            'name': 'test_name',
+            'value': 123
+        }
+        base_model = BaseModel(**kwargs)
+        self.assertEqual(base_model.id, 'test_id')
+        self.assertEqual(base_model.created_at, datetime(2022, 1, 1, 0, 0))
+        self.assertEqual(base_model.updated_at, datetime(2022, 1, 1, 0, 0))
+        self.assertEqual(base_model.name, 'test_name')
+        self.assertEqual(base_model.value, 123)
+
 if __name__ == '__main__':
     unittest.main()
