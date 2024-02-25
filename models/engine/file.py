@@ -7,7 +7,7 @@ from models.department import Department
 from models.student import Student
 from models.document import Document
 
-class FileStorge:
+class FileStorage:
     """Class for implementing JSON based file storage"""
 
     __objs = {}
