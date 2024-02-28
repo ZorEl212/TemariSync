@@ -38,4 +38,23 @@ def upload_doc(user_id):
         shutil.rmtree(os.getenv('TEMP_DOC_DIR')  + doc.id)
         return(doc.to_dict())
     abort(404)
-    
+
+@app_views.route('/documents/<string:user_id>/<string:doc_id>', strict_slashes=False, methods=['PUT'])
+def update_doc(user_id, doc_id):
+    stud = storage.get('Student', user_id)
+    new_args = request.get_json() if request.is_json else abort(jsonify({'error': 'bad request'}), 400)
+    if stud and f'Document.{doc_id}' in stud.documents.keys():
+        doc = stud.documents.get(f"Document.{doc_id}")
+        for key, value in new_args.items():
+            setattr(doc, key, value)
+            doc.save()
+        return jsonify(doc.to_dict())
+    return "Not Found"
+
+@app_views.route('/documents/<string:user_id>/<string:doc_id>', strict_slashes=False, methods=['DELETE'])
+def del_doc(user_id, doc_id):
+    stud = storage.get('Student', user_id)
+    if stud and f'Document.{doc_id}' in stud.documents.keys():
+        storage.delete(stud.documents.get(f'Document.{doc_id}'))
+        return make_response(jsonify({}), 204)
+    return make_response(jsonify({'error': 'bad request'}), 400)
