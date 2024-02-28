@@ -1,7 +1,9 @@
 from api.v1.views import app_views
 from models import storage
-from flask import jsonify, send_file
-import io
+from flask import jsonify, send_file, abort, request, make_response
+from models.document import Document
+import os
+import shutil
 
 @app_views.route('documents/<string:user_id>', strict_slashes=False, methods=['GET'])
 def user_docs(user_id):
@@ -22,3 +24,18 @@ def download_doc(user_id, doc_id):
         if values.to_dict().get('id') == doc_id:
             file = values.get_file()
     return send_file('/home/yeab/alx/TemariSync/return/' + file, as_attachment=True)
+
+@app_views.route('/documents/upload/<string:user_id>', strict_slashes=False, methods=['POST'])
+def upload_doc(user_id):
+    if storage.get('Student', user_id):
+        form_data = request.form
+        file = request.files.get('file')
+        doc = Document(**form_data)
+        doc.tags = [tag.strip() for tag in form_data['tags'].split('#') if tag.strip()]
+        os.mkdir(os.getenv('TEMP_DOC_DIR')  + doc.id)
+        file.save(os.getenv('TEMP_DOC_DIR') + doc.id + "/" + file.filename)
+        doc.save(os.getenv('TEMP_DOC_DIR')  + doc.id + '/' + file.filename)
+        shutil.rmtree(os.getenv('TEMP_DOC_DIR')  + doc.id)
+        return(doc.to_dict())
+    abort(404)
+    
