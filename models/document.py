@@ -22,5 +22,7 @@ class Document(BaseModel):
 
     def get_file(self):
         extention = os.path.splitext(self.filename)[-1]
-        shutil.copy(f'docs/{self.filename}', f'return/{self.title}{extention}')
-        return "Saved Successfully!"
+        if not os.path.exists(f'return/{self.id}'):
+            os.mkdir(path=f'return/{self.id}')
+        shutil.copy2(f'docs/{self.filename}', f'return/{self.id}/{self.title}{extention}')
+        return f'{self.id}/{self.title}{extention}'
