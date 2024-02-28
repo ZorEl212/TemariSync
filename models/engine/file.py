@@ -11,11 +11,17 @@ class FileStorage:
     """Class for implementing JSON based file storage"""
 
     __objs = {}
-    classes = ['Student', 'Department', 'Course', 'Document', 'BaseModel']
+    classes = ['Student', 'Department', 'Course', 'Document']
     __path = 'file.json'
 
-    def all(self):
+    def all(self, cls=None):
         """Fetch all objects that exist on the file storage"""
+        if cls is not None:
+            o = {}
+            for key, value in self.__objs.items():
+                if value.cls_name == cls if isinstance(cls, str) else isinstance(value, cls):
+                    o[key] = value
+            return o
         return self.__objs
 
     def new(self, obj):
@@ -40,3 +46,40 @@ class FileStorage:
                 if cls_name in self.classes:
                     new_obj = eval(cls_name)(**ser_data)
                     self.new(new_obj)
+
+    def count(self, cls=None):
+        """Get count of objects based on class"""
+        count = 0
+        if cls is None:
+            return len(self.__objs)
+        elif cls in self.classes or cls.__name__ in self.classes:
+            for obj in __class__.__objs.values():
+                if obj.cls_name == cls if isinstance(
+                    cls, str) else isinstance(obj, cls):
+                    #To explain what's going on here,
+                    #if cls is a string it will be compared
+                    #with the class name otherwise if cls is
+                    #a class type, obj will be checked
+                    #if it's an instance of cls
+                    count += 1     
+        return count
+
+    def get(self, cls, id):
+        """Get a object based on given id"""
+        obj = {}
+        if isinstance(cls, str):
+            if cls not in self.classes:
+                return None
+            for o in self.__objs.values():
+                if isinstance(o, eval(cls)) and o.to_dict()['id'] == id:
+                    return o
+        elif cls.__name__ in self.classes:
+            print("Yes")
+            for o in self.__objs.values():
+                if isinstance(o, cls) and o.to_dict()['id'] == id:
+                    return o
+        return None             
+
+    def close(self):
+        """call reload() method for deserializing the JSON file to objects"""
+        self.reload()
