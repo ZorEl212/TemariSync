@@ -78,7 +78,11 @@ class FileStorage:
             for o in self.__objs.values():
                 if isinstance(o, cls) and o.to_dict()['id'] == id:
                     return o
-        return None             
+        return None    
+    def delete(self, obj):
+        __class__.__objs.pop(f"{obj.cls_name}.{obj.id}")
+        self.save()
+        self.reload()         
 
     def close(self):
         """call reload() method for deserializing the JSON file to objects"""
