@@ -11,13 +11,14 @@ class Document(BaseModel):
     tags = []
     filename= ""
 
-    def save(self, file):
+    def save(self, file=None):
         """Updates time metadata of an instance and saves it on main dictionary"""
-
+        
+        if file is not None:
+            base, extention = os.path.splitext(os.path.basename(file))
+            self.filename = f'{self.id}{extention}'
+            shutil.copy(file, f'{os.getenv("DOC_DIR")}{self.filename}')
         setattr(self, 'updated_at', datetime.now())
-        base, extention = os.path.splitext(os.path.basename(file))
-        self.filename = f'{self.id}{extention}'
-        shutil.copy(file, f'{os.getenv("DOC_DIR")}{self.filename}')
         models.storage.save()
 
     def get_file(self):
