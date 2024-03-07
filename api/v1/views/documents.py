@@ -4,12 +4,27 @@ from flask import jsonify, send_file, abort, request, make_response
 from models.document import Document
 import os
 import shutil
+from flask import send_from_directory
 
 @app_views.route('documents/<string:user_id>', strict_slashes=False, methods=['GET'])
 def user_docs(user_id):
     stud = storage.get('Student', user_id)
+    if (stud is None):
+        abort(404)
     docs = stud.documents
     return jsonify([value.to_dict() for value in docs.values()])
+
+@app_views.route('/documents/all', strict_slashes=False, methods=['GET'])
+def all_docs():
+    docs = storage.all('Document')
+    return jsonify([value.to_dict() for value in docs.values()])
+
+@app_views.route('/documents/details/<string:doc_id>', strict_slashes=False, methods=['GET'])
+def get_doc(doc_id):
+    doc = storage.get('Document', doc_id)
+    if doc is not None:
+        return jsonify(doc.to_dict())
+    return abort(404)
 
 @app_views.route('/documents/stats/<string:user_id>', strict_slashes=False, methods=["GET"])
 def user_stats(user_id):
@@ -23,13 +38,17 @@ def download_doc(user_id, doc_id):
     for values in stud.documents.values():
         if values.to_dict().get('id') == doc_id:
             file = values.get_file()
-    return send_file('/home/yeab/alx/TemariSync/return/' + file, as_attachment=True)
+            directory = os.getenv('RETURN_DIR')
+            filename = values.title + values.file_type.lower()
+            return send_from_directory(directory, file, as_attachment=True)
+    abort(404)
+
 
 @app_views.route('/documents/upload/<string:user_id>', strict_slashes=False, methods=['POST'])
 def upload_doc(user_id):
     if storage.get('Student', user_id):
         form_data = request.form
-        file = request.files.get('file')
+        file = request.files['file']
         doc = Document(**form_data)
         doc.tags = [tag.strip() for tag in form_data['tags'].split('#') if tag.strip()]
         os.mkdir(os.getenv('TEMP_DOC_DIR')  + doc.id)
