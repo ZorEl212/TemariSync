@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{url_for('static',filename='css/main.css')}}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/upload.js') }}?{{ cache_id }}"></script>
+</head>
+    <body>
+        
+     <section class="bg-gray-100">
+            <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+              <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
+                <div class="lg:col-span-2 lg:py-12">
+                  <p class="max-w-xl text-lg typing-animation">
+                    Upload your work to share with the community. You can upload assignments, projects, and study materials. Show off your skills, collaborate with others, and contribute to the learning experience. Whether it's a coding project, a research paper, or a study guide, 
+                    TemariSync provides a platform for you to showcase your work and inspire others. 
+                    Join our community of learners and start sharing your knowledge today!
+                  </p>
+                </div>
+          
+                <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+                  <form id ="uploadForm" class="space-y-4" enctype="multipart/form-data">
+                    <div>
+                      <label class="sr-only" for="title">Title</label>
+                      <input id="title"
+                        class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                        placeholder="Title"
+                        type="text"
+                        id="title"
+                      />
+                    </div>
+          
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-1">
+                      <div>
+                        <label class="sr-only" for="course">Course</label>
+                        <input id="course"
+                          class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                          placeholder="Course"
+                          type="text"
+                          id="course"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-1">
+                            <label class="sr-only" for="tags">Tags</label>
+                            <input id="tags"
+                              class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                              placeholder="Tags (Separated by #)"
+                              type="text"
+                              id="tags"
+                            />
+                          </div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-">
+                        <div>
+                            <label class="sr-only" for="coAuthor">Co-Author</label>
+                            <input
+                              class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                              placeholder="Co-Author (Optional)"
+                              type="text"
+                              id="coAuthor"
+                            />
+                          </div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
+                      <div>
+                        <label
+                          for="assignment"
+                          class="block w-full cursor-pointer rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black has-[:checked]:border-black has-[:checked]:bg-black has-[:checked]:text-white"
+                          tabindex="0"
+                        >
+                          <input value="Assignment" class="sr-only" id='assignment' type="radio" tabindex="-1" name="option" />
+          
+                          <span class="text-sm"> Assignment </span>
+                        </label>
+                      </div>
+          
+                      <div>
+                        <label
+                          for="project"
+                          class="block w-full cursor-pointer rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black has-[:checked]:border-black has-[:checked]:bg-black has-[:checked]:text-white"
+                          tabindex="0"
+                        >
+                          <input value="Project" class="sr-only" id="project" type="radio" tabindex="-1" name="option" />
+          
+                          <span class="text-sm"> Project </span>
+                        </label>
+                      </div>
+          
+                      <div>
+                        <label
+                          for="material"
+                          class="block w-full cursor-pointer rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black has-[:checked]:border-black has-[:checked]:bg-black has-[:checked]:text-white"
+                          tabindex="0"
+                        >
+                          <input value="Material" class="sr-only" id="material" type="radio" tabindex="-1" name="option" />
+          
+                          <span class="text-sm"> Material </span>
+                        </label>
+                      </div>
+                    </div>
+          
+                    <div>
+                      <label class="sr-only" for="description">Description</label>
+          
+                      <textarea
+                        class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                        placeholder="Write detailed description of your work"
+                        rows="8"
+                        id="description"
+                      ></textarea>
+                    </div>
+                    <div class="mt-4">
+                      <label class="sr-only" for="file">File</label>
+                      <input id="docfile"
+                        class="inline-block w-full rounded-lg border-gray-200 p-3 text-sm"
+                        type="file"
+                      />
+                    </div>
+          
+                    <div>
+                      <button id="submit"
+                        type="submit"
+                        class="inline-block rounded-lg bg-black px-5 py-3 font-medium text-white"
+                      >
+                        Upload document
+                      </button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+          </section>
+    </body>
+</html>

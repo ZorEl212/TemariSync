@@ -1,0 +1,111 @@
+{% extends "base2.html" %}
+{% block title %}
+    Document Details
+{% endblock %}
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/docfile.js') }}?{{ cache_id }}"></script>
+{% endblock %}
+{% block content %}
+        <div class="container mx-auto">
+            <h2 id="docTitle" class="text-3xl font-semibold text-center mb-6 mt-8"></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-10">
+                <div id="leftDiv" class="p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="static/images/thumbai.jpg" alt="Document Thumbnail" class="w-32 h-32 mr-4 rounded">
+                    </div>
+                    <h3 class="text-lg font-semibold">Document Description</h3>
+                    <p id="discription" class="text-gray-500 mt-2"> <!-- Description here --></p>
+                    <div class="flex items-center mt-4">
+                        <p class="text-lg font-semibold mr-2">Document Tags:</p>
+                        <div id="tags" class="flex">
+                          <!-- Tags will be added by JQuery here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="flow-root">
+                        <dl class="-my-3 divide-y divide-gray-100 text-sm">
+                          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                            <dt class="font-medium text-gray-900">Title</dt>
+                            <dd id="title" class="text-gray-700 sm:col-span-2"></dd>
+                          </div>
+                      
+                          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                            <dt id="couse" class="font-medium text-gray-900">Course</dt>
+                            <dd id="courseName" class="text-gray-700 sm:col-span-2"></dd>
+                          </div>
+                      
+                          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                            <dt class="font-medium text-gray-900">Category</dt>
+                            <dd id="category" class="text-gray-700 sm:col-span-2"></dd>
+                          </div>
+                      
+                          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                            <dt class="font-medium text-gray-900">File Type</dt>
+                            <dd id="fileType" class="text-gray-700 sm:col-span-2"></dd>
+                          </div>
+                          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                            <dt class="font-medium text-gray-900">Author</dt>
+                            <dd id="author" class="text-gray-700 sm:col-span-2"></dd>
+                          </div>
+
+                          <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                            <dt class="font-medium text-gray-900">Author's Note</dt>
+                            <dd id="note" class="text-gray-700 sm:col-span-2">
+                            </dd>
+                          </div>
+                        </dl>
+                      </div>
+                    <div class="flex justify-end mt-4">
+                        <span class="inline-flex overflow-hidden rounded-md border bg-white shadow-sm">
+                            <button
+                              class="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative"
+                              title="Edit Product"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="h-4 w-4"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                                />
+                              </svg>
+                            </button>
+                          
+                            <button
+                              class="inline-block p-3 text-gray-700 hover:bg-gray-50 focus:relative"
+                              title="Delete Product"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="h-4 w-4"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                                />
+                              </svg>
+                            </button>
+                          </span>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="flex justify-center mt-4">
+                <a id="download" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Download</a>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    TemariSync Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-semibold text-center mb-6 mt-8">Welcome</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <a id="assignments" class="bg-white rounded-lg shadow-lg p-4 hover:bg-indigo-200 transition-colors duration-300">
+                <h3 class="text-xl font-semibold mb-2">Assignments</h3>
+                <p class="text-center">All your assignments at one place. Get all your assignments organized for better productivity.</p>
+            </a>
+            <a id="projects" class="bg-white rounded-lg shadow-lg p-4 hover:bg-indigo-200 transition-colors duration-300">
+                <h3 class="text-xl font-semibold mb-2">Projects</h3>
+                <p class="text-center">All your projects at one place. Get all your projects organized for better productivity.</p>
+            </a>
+            <a id="materials" class="bg-white rounded-lg shadow-lg p-4 hover:bg-indigo-200 transition-colors duration-300">
+                <h3 class="text-xl font-semibold mb-2">Materials</h3>
+                <p class="text-center">All your materials at one place. Get all your materials organized for better productivity.</p>
+            </a>
+        </div>
+        <p class="text-center mt-6 text-lg text-gray-700">All your academic journey at one place. Get all your assignments, projects, and materials organized for better productivity.</p>
+    </div>
+{% endblock %}
