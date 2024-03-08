@@ -10,7 +10,7 @@ $(document).ready(function () {
         const coAuthor = $('#coAuthor').val();
         let category;
         const docfile = $('#docfile');
-
+        const user_id = localStorage.getItem('user_id');
         $('input[type="radio"][name="option"]').each(function () {
             if ($(this).is(':checked')) {
                 category = $(this).val();
@@ -48,13 +48,14 @@ $(document).ready(function () {
         formData.append('title', title);
         formData.append('description', discription);
         formData.append('tags', tags);
-        formData.append('course', course);
+        formData.append('course_id', course);
         formData.append('coAuthor', coAuthor);
         formData.append('category', category);
+        formData.append('stud_id', localStorage.getItem('user_id'));
         formData.append('file', docfile[0].files[0]);
 
         $.ajax({
-            url: 'http://34.207.190.195/temarisync/api/v1/documents/upload/bd4d3614-f2b0-4f34-b6a6-c6cff2af127e',
+            url: 'http://34.207.190.195/temarisync/api/v1/documents/upload/' + user_id,
             method: 'POST',
             data: formData,
             processData: false,

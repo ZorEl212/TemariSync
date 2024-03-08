@@ -4,15 +4,16 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
-@app.route('/', strict_slashes=False)
+@app.route('/temarisync', strict_slashes=False)
+@app.route('/temarisync/home', strict_slashes=False)
 def index():
     return render_template('dashboard.html')
 
-@app.route('/docs/', strict_slashes=False)
+@app.route('/temarisync/docs/', strict_slashes=False)
 def docs():
     return render_template('docs.html')
 
-@app.route('/docfile/', strict_slashes=False)
+@app.route('/temarisync/docfile/', strict_slashes=False)
 def docfile():
     return render_template('docInfo.html')
 
@@ -20,7 +21,7 @@ def docfile():
 def hello():
     return render_template('hello.html')
 
-@app.route('/upload/', strict_slashes=False)
+@app.route('/temarisync/upload/', strict_slashes=False)
 def upload():
     return render_template('upload.html')
 

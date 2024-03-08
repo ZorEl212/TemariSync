@@ -15,7 +15,7 @@ $(function () {
                 <h3 class="mt-0.5 text-lg font-medium text-gray-900">${title}</h3>
             </a>
             <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">${content}</p>
-            <a href="/temarisync/docfile?doc_id=${doc_id}&user_id=${user_id}" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+            <a href="docfile?doc_id=${doc_id}&user_id=${user_id}" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
                 Find out more
                 <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">&rarr;</span>
             </a>
@@ -24,9 +24,10 @@ $(function () {
     }
     const articles = []
     let docs;
-    const user_id = new URLSearchParams(window.location.search).get('user_id');
+    const user_id = localStorage.getItem('user_id');
     const category = new URLSearchParams(window.location.search).get('category');
-    if (user_id === null) {
+    const filter = new URLSearchParams(window.location.search).get('filter');
+    if (user_id === null || user_id === 'null' || filter === 'all') {
         url = 'http://34.207.190.195/temarisync/api/v1/documents/all';
     } else {
         url = 'http://34.207.190.195/temarisync/api/v1/documents/' + user_id
