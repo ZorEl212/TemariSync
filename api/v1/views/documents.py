@@ -76,4 +76,4 @@ def del_doc(user_id, doc_id):
     if stud and f'Document.{doc_id}' in stud.documents.keys():
         storage.delete(stud.documents.get(f'Document.{doc_id}'))
         return make_response(jsonify({}), 204)
-    return make_response(jsonify({'error': 'bad request'}), 400)
+    return make_response(jsonify({'error': 'forbidden'}), 403)

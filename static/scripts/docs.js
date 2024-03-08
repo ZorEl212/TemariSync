@@ -1,7 +1,7 @@
 $(function () {
     const $docs = $('#docs');
     const $myDocs = $('#myDocs');
-    function createArticle(title, content, doc_id) {
+    function createArticle(title, content, doc_id, user_id) {
         return `
         <article class="rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6">
             <span class="inline-block rounded bg-blue-600 p-2 text-white">
@@ -15,7 +15,7 @@ $(function () {
                 <h3 class="mt-0.5 text-lg font-medium text-gray-900">${title}</h3>
             </a>
             <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">${content}</p>
-            <a href="/docfile?doc_id=${doc_id}" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+            <a href="/temarisync/docfile?doc_id=${doc_id}&user_id=${user_id}" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
                 Find out more
                 <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">&rarr;</span>
             </a>
@@ -27,9 +27,9 @@ $(function () {
     const user_id = new URLSearchParams(window.location.search).get('user_id');
     const category = new URLSearchParams(window.location.search).get('category');
     if (user_id === null) {
-        url = 'http://172.29.74.45:5001/api/v1/documents/all';
+        url = 'http://34.207.190.195/temarisync/api/v1/documents/all';
     } else {
-        url = 'http://172.29.74.45:5001/api/v1/documents/' + user_id
+        url = 'http://34.207.190.195/temarisync/api/v1/documents/' + user_id
     }
 
     $.ajax({
@@ -47,7 +47,7 @@ $(function () {
                 } else {
                     if (document.hasOwnProperty('title') && document.hasOwnProperty('description')
                         && document.category.toLowerCase() === category.toLocaleLowerCase()) {
-                        articles.push(createArticle(document.title, document.description, document.id));
+                        articles.push(createArticle(document.title, document.description, document.id, user_id));
                     }
                 }
             });

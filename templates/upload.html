@@ -9,7 +9,6 @@
     <script type="text/javascript" src="{{ url_for('static', filename='scripts/upload.js') }}?{{ cache_id }}"></script>
 </head>
     <body>
-        
      <section class="bg-gray-100">
             <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
               <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
@@ -135,5 +134,24 @@
                 </div>
               </div>
           </section>
+              <!-- Custom alert container -->
+    <div id="custom-alert" class="custom-alert">
+      <div class="custom-alert-content">
+          <span class="close">&times;</span>
+          <div class="flex items-start gap-4">
+              <span class="text-green-600">
+                  <i class="fas fa-check-circle"></i>
+              </span>
+
+              <div class="flex-1">
+                  <strong class="block font-medium text-gray-900">Changes saved</strong>
+                  <p class="mt-1 text-sm text-gray-700">Your product changes have been saved.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Include custom JavaScript to handle button click -->
+  <script src="static/scripts/script.js"></script>
     </body>
 </html>

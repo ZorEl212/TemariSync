@@ -9,13 +9,16 @@ $(() => {
     const $author = $('#author');
     const $aNote = $('#note');
     const $download = $('#download');
+    const $editDocInfo = $('#editDocInfo');
+    const $deleteDoc = $('#deleteDoc');
 
     const doc_id = new URLSearchParams(window.location.search).get('doc_id');
+    const user_id = new URLSearchParams(window.location.search).get('user_id');
     let $doc;
 
     $.ajax({
         type: 'GET',
-        url: 'http://172.23.154.146:5001/api/v1/documents/details/' + doc_id,
+        url: 'http://34.207.190.195/temarisync/api/v1/documents/details/' + doc_id,
         data: '{}',
         dataType: 'json',
         success: function (document) {
@@ -35,7 +38,7 @@ $(() => {
             });
             $.ajax({
                 type: 'GET',
-                url: 'http://172.23.154.146:5001/api/v1/courses/' + document.course_id,
+                url: 'http://34.207.190.195/temarisync/api/v1/courses/' + document.course_id,
                 data: '{}',
                 dataType: 'json',
                 success: function (course) {
@@ -44,15 +47,31 @@ $(() => {
             });
             $.ajax({
                 type: 'GET',
-                url: 'http://172.23.154.146:5001/api/v1/students/' + document.stud_id,
+                url: 'http://34.207.190.195/temarisync/api/v1/students/' + document.stud_id,
                 data: '{}',
                 dataType: 'json',
                 success: function (student) {
                     $author.text(student.name);
                 }
             });
-            $download.attr('href', 'http://172.23.154.146:5001/api/v1/documents/download/' + document.stud_id + "/" + doc_id);
+            $download.attr('href', 'http://34.207.190.195/temarisync/api/v1/documents/download/' + document.stud_id + "/" + doc_id);
         }
 
     })
+    $deleteDoc.click(function () {
+        $.ajax({
+            type: 'DELETE',
+            url: 'http://34.207.190.195/temarisync/api/v1/documents/' + user_id + doc_id,
+            success: function (response) {
+                window.location.href = '/temarisync/docs/';
+            },
+            error: function (response, status, error) {
+                if (response.status === 401 || response.status === 403) {
+                    alert('You are not authorized to delete this document.');
+                }
+            }
+
+        });
+    });
+
 });

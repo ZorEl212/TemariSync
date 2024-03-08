@@ -12,7 +12,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-10">
                 <div id="leftDiv" class="p-6">
                     <div class="flex items-center mb-4">
-                        <img src="static/images/thumbai.jpg" alt="Document Thumbnail" class="w-32 h-32 mr-4 rounded">
+                        <img src="{{ url_for('static', filename='images/thumbai.jpg') }}" alt="Document Thumbnail" class="w-32 h-32 mr-4 rounded">
                     </div>
                     <h3 class="text-lg font-semibold">Document Description</h3>
                     <p id="discription" class="text-gray-500 mt-2"> <!-- Description here --></p>
@@ -60,9 +60,9 @@
                       </div>
                     <div class="flex justify-end mt-4">
                         <span class="inline-flex overflow-hidden rounded-md border bg-white shadow-sm">
-                            <button
+                            <button id="editDocInfo"
                               class="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative"
-                              title="Edit Product"
+                              title="Edit Document Info"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -80,9 +80,9 @@
                               </svg>
                             </button>
                           
-                            <button
+                            <button id="deleteDoc"
                               class="inline-block p-3 text-gray-700 hover:bg-gray-50 focus:relative"
-                              title="Delete Product"
+                              title="Delete Document"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
