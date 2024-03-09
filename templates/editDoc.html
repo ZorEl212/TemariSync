@@ -6,7 +6,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link href="{{url_for('static',filename='css/main.css')}}" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/upload.js') }}?{{ cache_id }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/editDoc.js') }}?{{ cache_id }}"></script>
 </head>
     <body>
      <section class="bg-gray-100">
@@ -21,7 +21,7 @@
                 </div>
           
                 <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-                  <form id ="uploadForm" class="space-y-4" enctype="multipart/form-data">
+                  <form id ="editForm" class="space-y-4" enctype="multipart/form-data">
                     <div>
                       <label class="sr-only" for="title">Title</label>
                       <input id="title"
@@ -123,21 +123,21 @@
                         id="authorsNote"
                       ></textarea>
                     </div>
-                    <div class="mt-4">
-                      <label class="sr-only" for="file">File</label>
-                      <input id="docfile"
-                        class="inline-block w-full rounded-lg border-gray-200 p-3 text-sm"
-                        type="file"
-                      />
-                    </div>
-                    <div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                       <button id="submit"
                         type="submit"
                         class="inline-block rounded-lg bg-black px-5 py-3 font-medium text-white"
                       >
-                        Upload document
+                        Save
                       </button>
+                      <button id="cancel"
+                      type="reset"
+                      class="w-full rounded-lg border hover:border-black transition-colors duration-150 border-gray-200 p-3 text-sm"
+                      >
+                      Cancel
+                    </button>
                     </div>
+                    </form>
                   </form>
                   </div>
                 </div>
