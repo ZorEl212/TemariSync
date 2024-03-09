@@ -17,9 +17,9 @@ def docs():
 def docfile():
     return render_template('docInfo.html')
 
-@app.route('/hello/', strict_slashes=False)
-def hello():
-    return render_template('hello.html')
+@app.route('/temarisync/editdoc/', strict_slashes=False)
+def editDoc():
+    return render_template('editDoc.html')
 
 @app.route('/temarisync/upload/', strict_slashes=False)
 def upload():
