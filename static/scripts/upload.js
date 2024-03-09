@@ -10,7 +10,7 @@ $(document).ready(function () {
         const coAuthor = $('#coAuthor').val();
         let category;
         const docfile = $('#docfile');
-        const caancel = $('#cancel');
+        const cancel = $('#cancel');
         const user_id = localStorage.getItem('user_id');
         $('input[type="radio"][name="option"]').each(function () {
             if ($(this).is(':checked')) {
@@ -60,7 +60,7 @@ $(document).ready(function () {
             success: function (response) {
                 var validCourse = false;
                 $.each(response, function (i, crs) {
-                    if (crs.name.toLowerCase() === course.toLowerCase()) {
+                    if (crs.name.toLowerCase().trim() === course.toLowerCase().trim()) {
                         course = crs.id;
                         validCourse = true;
                         return false; // Exit the loop early since a match is found
@@ -78,7 +78,7 @@ $(document).ready(function () {
                 formData.append('course_id', course);
                 formData.append('coAuthor', coAuthor);
                 formData.append('category', category);
-                formData.append('author_comment', $('#author_comment').val());
+                formData.append('author_comment', $('#authorsNote').val());
                 formData.append('stud_id', localStorage.getItem('user_id'));
                 formData.append('file', docfile[0].files[0]);
         
@@ -103,5 +103,8 @@ $(document).ready(function () {
             }
         });
         
+    });
+    $('#cancel').click(function () {
+        window.location.href = 'home';
     });
 });
