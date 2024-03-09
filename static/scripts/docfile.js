@@ -63,7 +63,7 @@ $(() => {
             type: 'DELETE',
             url: 'http://34.207.190.195/temarisync/api/v1/documents/' + user_id + '/' + doc_id,
             success: function (response) {
-                window.location.href = '/temarisync/docs/';
+                window.location.href = '/temarisync/docs/?filter=all';
             },
             error: function (response, status, error) {
                 if (response.status === 401 || response.status === 403) {
