@@ -9,6 +9,11 @@ def get_course(course_id):
         return jsonify(course.to_dict())
     return abort(404)
 
+@app_views.route('/courses', strict_slashes=False, methods=['GET'])
+def get_courses():
+    courses = storage.all('Course')
+    return jsonify([value.to_dict() for value in courses.values()])
+
 @app_views.route('/courses/<string:course_id>/documents', strict_slashes=False, methods=['GET'])
 def get_course_docs(course_id):
     course = storage.get('Course', course_id)
