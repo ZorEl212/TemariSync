@@ -13,7 +13,7 @@ $(() => {
     const $deleteDoc = $('#deleteDoc');
 
     const doc_id = new URLSearchParams(window.location.search).get('doc_id');
-    const user_id = new URLSearchParams(window.location.search).get('user_id');
+    const user_id = localStorage.getItem('user_id');
     let $doc;
 
     $.ajax({
@@ -61,7 +61,7 @@ $(() => {
     $deleteDoc.click(function () {
         $.ajax({
             type: 'DELETE',
-            url: 'http://34.207.190.195/temarisync/api/v1/documents/' + user_id + doc_id,
+            url: 'http://34.207.190.195/temarisync/api/v1/documents/' + user_id + '/' + doc_id,
             success: function (response) {
                 window.location.href = '/temarisync/docs/';
             },
@@ -73,5 +73,9 @@ $(() => {
 
         });
     });
+    $editDocInfo.click(function () {
+        window.location.href = 'editdoc?doc_id=' + doc_id;
+    });
+    
 
 });

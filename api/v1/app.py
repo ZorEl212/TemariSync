@@ -6,7 +6,7 @@ from flask import Flask, make_response, jsonify
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(app_views)
-cors = CORS(app)
+cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 @app.teardown_appcontext
 def teardown_st(Exception):

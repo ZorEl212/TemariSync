@@ -1,6 +1,5 @@
-$(function () {
+$(document).ready(function () {
     const $docs = $('#docs');
-    const $myDocs = $('#myDocs');
     function createArticle(title, content, doc_id, user_id) {
         return `
         <article class="rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6">
@@ -27,10 +26,12 @@ $(function () {
     const user_id = localStorage.getItem('user_id');
     const category = new URLSearchParams(window.location.search).get('category');
     const filter = new URLSearchParams(window.location.search).get('filter');
-    if (user_id === null || user_id === 'null' || filter === 'all') {
+    if (filter === 'all') {
         url = 'http://34.207.190.195/temarisync/api/v1/documents/all';
+        $('#myDocs').text('All Documents');
     } else {
         url = 'http://34.207.190.195/temarisync/api/v1/documents/' + user_id
+        $('#myDocs').text(`My ${category.charAt(0).toUpperCase() + category.slice(1)}s`);
     }
 
     $.ajax({
@@ -43,7 +44,7 @@ $(function () {
             $.each(documents, function (i, document) {
                 if (category === null) {
                     if (document.hasOwnProperty('title') && document.hasOwnProperty('description')) {
-                        articles.push(createArticle(document.title, document.description, document.id));
+                        articles.push(createArticle(document.title, document.description, document.id, user_id));
                     }
                 } else {
                     if (document.hasOwnProperty('title') && document.hasOwnProperty('description')
