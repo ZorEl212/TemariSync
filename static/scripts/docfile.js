@@ -18,7 +18,7 @@ $(() => {
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:5001/api/v1/documents/details/' + doc_id,
+        url: 'http://34.207.190.195/temarisync/api/v1/documents/details/' + doc_id,
         data: '{}',
         dataType: 'json',
         success: function (document) {
@@ -38,7 +38,7 @@ $(() => {
             });
             $.ajax({
                 type: 'GET',
-                url: 'http://localhost:5001/api/v1/courses/' + document.course_id,
+                url: 'http://34.207.190.195/temarisync/api/v1/courses/' + document.course_id,
                 data: '{}',
                 dataType: 'json',
                 success: function (course) {
@@ -47,23 +47,23 @@ $(() => {
             });
             $.ajax({
                 type: 'GET',
-                url: 'http://localhost:5001/api/v1/students/' + document.stud_id,
+                url: 'http://34.207.190.195/temarisync/api/v1/students/' + document.stud_id,
                 data: '{}',
                 dataType: 'json',
                 success: function (student) {
                     $author.text(student.name);
                 }
             });
-            $download.attr('href', 'http://localhost:5001/api/v1/documents/download/' + document.stud_id + "/" + doc_id);
+            $download.attr('href', 'http://34.207.190.195/temarisync/api/v1/documents/download/' + document.stud_id + "/" + doc_id);
         }
 
     })
     $deleteDoc.click(function () {
         $.ajax({
             type: 'DELETE',
-            url: 'http://localhost:5001/api/v1/documents/' + user_id + '/' + doc_id,
+            url: 'http://34.207.190.195/temarisync/api/v1/documents/' + user_id + '/' + doc_id,
             success: function (response) {
-                window.location.href = 'docs?filter=all';
+                window.location.href = '/temarisync/docs/?filter=all';
             },
             error: function (response, status, error) {
                 if (response.status === 401 || response.status === 403) {
