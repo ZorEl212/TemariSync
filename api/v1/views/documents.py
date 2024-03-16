@@ -80,5 +80,6 @@ def del_doc(user_id, doc_id):
     stud = storage.get('Student', user_id)
     if stud and doc_id in [d.id for d in stud.documents]:
         storage.delete(storage.get('Document', doc_id))
-        return make_response(jsonify({}), 204)
+        return make_response(jsonify({'delete': 'OK'}), 204)
+    
     return make_response(jsonify({'error': 'forbidden'}), 403)

@@ -54,6 +54,7 @@ class DBStorage:
         """Delete an instance from the session."""
         if obj:
             self.__session.delete(obj)
+            self.save()
 
     def reload(self):
         """Create all tables in the database."""
