@@ -78,7 +78,7 @@ def update_doc(user_id, doc_id):
 @app_views.route('/documents/<string:user_id>/<string:doc_id>', strict_slashes=False, methods=['DELETE'])
 def del_doc(user_id, doc_id):
     stud = storage.get('Student', user_id)
-    if stud and f'Document.{doc_id}' in stud.documents.keys():
-        storage.delete(stud.documents.get(f'Document.{doc_id}'))
+    if stud and doc_id in [d.id for d in stud.documents]:
+        storage.delete(storage.get('Document', doc_id))
         return make_response(jsonify({}), 204)
     return make_response(jsonify({'error': 'forbidden'}), 403)
