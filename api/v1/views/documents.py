@@ -12,7 +12,7 @@ def user_docs(user_id):
     if (stud is None):
         abort(404)
     docs = stud.documents
-    return jsonify([value.to_dict() for value in docs.values()])
+    return jsonify([value.to_dict() for value in docs])
 
 @app_views.route('/documents/all', strict_slashes=False, methods=['GET'])
 def all_docs():
