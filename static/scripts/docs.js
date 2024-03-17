@@ -8,10 +8,10 @@ $(document).ready(function () {
     let url;
 
     if (filter === 'all') {
-        url = 'http://34.207.190.195/temarisync/api/v1/documents/all';
+        url = 'https://yeab.tech/temarisync/api/v1/documents/all';
         $('#myDocs').text('All Documents');
     } else {
-        url = 'http://34.207.190.195/temarisync/api/v1/documents/' + user_id
+        url = 'https://yeab.tech/temarisync/api/v1/documents/' + user_id
         $('#myDocs').text(`My ${category.charAt(0).toUpperCase() + category.slice(1)}s`);
     }
 
