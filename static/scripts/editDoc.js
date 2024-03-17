@@ -10,7 +10,7 @@ $(document).ready(function () {
     const doc_id = new URLSearchParams(window.location.search).get('doc_id');
     let course_id;
     $.ajax({
-        url: 'http://34.207.190.195/temarisync/api/v1/documents/details/' + doc_id,
+        url: 'https://yeab.tech/temarisync/api/v1/documents/details/' + doc_id,
         method: 'GET',
         success: function (response) {
             if (title.val().trim() === '') {
@@ -18,7 +18,7 @@ $(document).ready(function () {
             }
             if (course.val().trim() === '') {
                 $.ajax({
-                    url: 'http://34.207.190.195/temarisync/api/v1/courses/' + response.course_id,
+                    url: 'https://yeab.tech/temarisync/api/v1/courses/' + response.course_id,
                     method: 'GET',
                     success: function (crs) {
                         course.val(crs.name);
@@ -60,7 +60,7 @@ $(document).ready(function () {
         event.preventDefault();
         var formData = new FormData(this);
         $.ajax({
-            url: 'http://34.207.190.195/temarisync/api/v1/courses/',
+            url: 'https://yeab.tech/temarisync/api/v1/courses/',
             method: 'GET',
             success: function (response) {
                 var validCourse = false;
@@ -92,7 +92,7 @@ $(document).ready(function () {
                 formData.append('user_id', user_id);
             
                 $.ajax({
-                    url: 'http://34.207.190.195/temarisync/api/v1/documents/' + user_id + '/' + doc_id,
+                    url: 'https://yeab.tech/temarisync/api/v1/documents/' + user_id + '/' + doc_id,
                     method: 'PUT',
                     contentType: 'application/json',
                     data: JSON.stringify(Object.fromEntries(formData)),
