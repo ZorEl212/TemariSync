@@ -12,16 +12,16 @@
     <div class="flex items-center">
         <a href="/temarisync/home" class="text-xl font-bold mr-4">TemariSync</a>
         <nav class="space-x-4">
-            <a href="#" class="text-gray-600 hover:text-gray-800">About</a>
+            <a href="https://yabsirad212.wixsite.com/temarisync-2" class="text-gray-600 hover:text-gray-800">About</a>
             <a href="#" class="text-gray-600 hover:text-gray-800">Contact Us</a>
         </nav>
     </div>
-    {% if is_extending_base2 %}
-    {% include 'search_button.html' %}
-    {% endif %}
 </header>
-
     <main class="py-8 flex-grow">
+      {% if is_extending_base2 %}
+{% include 'search_button.html' %}
+{% endif %}
+
         {% block content %}
         {% endblock %}
     </main>

@@ -89,10 +89,11 @@ $(document).ready(function () {
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        alert('Your form has been sent successfully.');
+                        alert('Your document has been successfully uploaded.');
+                        window.location.href = 'home';
                     },
                     error: function (xhr, status, error) {
-                        alert('Your form was not sent successfully.');
+                        alert('Error occured please try again later.');
                         console.error(error);
                     }
                 });

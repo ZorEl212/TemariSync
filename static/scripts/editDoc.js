@@ -98,7 +98,9 @@ $(document).ready(function () {
                     data: JSON.stringify(Object.fromEntries(formData)),
                     processData: false,
                     success: function (response) {
-                        alert('Your form has been sent successfully.');                    },
+                        alert('Document successfully updated.');
+                        window.location.href = '/temarisync/docfile?doc_id=' + doc_id + '&user_id=' + user_id;
+                    },
                     error: function (response, status, error) {
                         if (response.status === 401 || response.status === 403) {
                             alert('You are not authorized to edit this document.');
