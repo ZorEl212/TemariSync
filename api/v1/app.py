@@ -4,7 +4,7 @@ from api.v1.views import app_views
 from flask_cors import CORS
 from flask import Flask, make_response, jsonify, request
 from os import getenv
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, logout_user, current_user
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -35,6 +35,18 @@ def login():
             login_user(student)
             return jsonify(student.to_dict())
     return make_response(jsonify({"error": "unauthorized"}), 401)
+
+@app_views.route('/logout', strict_slashes=False, methods=['POST'])
+def logout():
+    logout_user()
+    return jsonify({"logout": "success"})
+
+@app.route('/checkuser', strict_slashes=False, methods=['GET'])
+def check_user():
+    if current_user.is_authenticated:
+        return jsonify(current_user.to_dict())
+    else:
+        return jsonify({"error": "unauthorized"}), 401
 
 app.register_blueprint(app_views)
             
