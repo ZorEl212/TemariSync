@@ -2,7 +2,7 @@ from random import random
 from models import storage
 from api.v1.views import app_views
 from flask_cors import CORS
-from flask import Flask, make_response, jsonify
+from flask import Flask, make_response, jsonify, request
 from os import getenv
 from flask_login import LoginManager
 
@@ -16,11 +16,6 @@ cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 @login_manager.user_loader
 def load_user(user_id):
     return storage.get('Student', user_id)
-
-app.config['SECRET_KEY'] = getenv('SECRET_KEY')
-login_manager = LoginManager()
-login_manager.init_app(app)
-
 
 app.register_blueprint(app_views)
             

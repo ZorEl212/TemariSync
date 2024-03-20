@@ -1,6 +1,6 @@
 from api.v1.views import app_views
 from models import storage
-from flask import jsonify, send_file, abort, request, make_response, request
+from flask import jsonify, request, make_response, request
 from flask_login import login_user, logout_user, current_user
 
 
