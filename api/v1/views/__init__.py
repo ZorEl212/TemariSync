@@ -7,3 +7,4 @@ from api.v1.views.documents import *
 from api.v1.views.courses import *
 from api.v1.views.students import *
 from api.v1.views.departments import *
+from api.v1.views.auth import *

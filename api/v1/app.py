@@ -2,9 +2,9 @@ from random import random
 from models import storage
 from api.v1.views import app_views
 from flask_cors import CORS
-from flask import Flask, make_response, jsonify, request
+from flask import Flask, make_response, jsonify
 from os import getenv
-from flask_login import LoginManager, login_user, logout_user, current_user
+from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -20,33 +20,7 @@ def load_user(user_id):
 app.config['SECRET_KEY'] = getenv('SECRET_KEY')
 login_manager = LoginManager()
 login_manager.init_app(app)
-@app_views.route('/login', strict_slashes=False, methods=['POST'])
-def login():
-    data = request.get_json()
-    email = data.get('email')
-    password = data.get('password')
-    if email is None:
-        return jsonify({"error": "email missing"}), 400
-    if password is None:
-        return jsonify({"error": "password missing"}), 400
-    students = storage.all('Student')
-    for student in students.values():
-        if ((student.email == email or student.school_id == email) and student.password == password):
-            login_user(student)
-            return jsonify(student.to_dict())
-    return make_response(jsonify({"error": "unauthorized"}), 401)
 
-@app_views.route('/logout', strict_slashes=False, methods=['POST'])
-def logout():
-    logout_user()
-    return jsonify({"logout": "success"})
-
-@app.route('/checkuser', strict_slashes=False, methods=['GET'])
-def check_user():
-    if current_user.is_authenticated:
-        return jsonify(current_user.to_dict())
-    else:
-        return jsonify({"error": "unauthorized"}), 401
 
 app.register_blueprint(app_views)
             
