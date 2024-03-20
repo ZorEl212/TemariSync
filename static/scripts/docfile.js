@@ -11,6 +11,8 @@ $(() => {
     const $download = $('#download');
     const $editDocInfo = $('#editDocInfo');
     const $deleteDoc = $('#deleteDoc');
+    const $confirmDelete = $('#confirmDelete');
+    const $container = $('#container');
 
     const doc_id = new URLSearchParams(window.location.search).get('doc_id');
     const user_id = localStorage.getItem('user_id');
@@ -59,6 +61,13 @@ $(() => {
 
     })
     $deleteDoc.click(function () {
+        $('#confirmDelete').css('display', '');
+        $('#cancel').off('click');
+        $('#confirm').off('click');
+        $('#cancel').click(function () {
+            $container.find('#confirmDelete').css('display', 'none');
+        });
+        $('#confirm').click(function () {
         $.ajax({
             type: 'DELETE',
             url: 'https://yeab.tech/temarisync/api/v1/documents/' + user_id + '/' + doc_id,
@@ -72,6 +81,7 @@ $(() => {
             }
 
         });
+    });
     });
     $editDocInfo.click(function () {
         window.location.href = 'editdoc?doc_id=' + doc_id;

@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $('#uploadForm').submit(function (event) {
         event.preventDefault();
-        var form = document.getElementById('myForm');
         var formData = new FormData(this);
         const title = $('#title').val();
         const discription = $('#description').val();
@@ -10,8 +9,8 @@ $(document).ready(function () {
         const coAuthor = $('#coAuthor').val();
         let category;
         const docfile = $('#docfile');
-        const cancel = $('#cancel');
         const user_id = localStorage.getItem('user_id');
+        const $container = $('#container');
         $('input[type="radio"][name="option"]').each(function () {
             if ($(this).is(':checked')) {
                 category = $(this).val();
@@ -55,7 +54,7 @@ $(document).ready(function () {
             return;
         }
         $.ajax({
-            url: 'https://yeab.tech/temarisync/api/v1/courses/',
+            url: 'http://localhost:5001/api/v1/courses/',
             method: 'GET',
             success: function (response) {
                 var validCourse = false;
@@ -83,14 +82,16 @@ $(document).ready(function () {
                 formData.append('file', docfile[0].files[0]);
         
                 $.ajax({
-                    url: 'https://yeab.tech/temarisync/api/v1/documents/upload/' + user_id,
+                    url: 'http://localhost:5001/api/v1/documents/upload/' + user_id,
                     method: 'POST',
                     data: formData,
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        alert('Your document has been successfully uploaded.');
-                        window.location.href = 'home';
+                        $('#successModal').css('display', '');
+                        $('#gotIt').click(function () {
+                            window.location.href = 'home';
+                        });
                     },
                     error: function (xhr, status, error) {
                         alert('Error occured please try again later.');
