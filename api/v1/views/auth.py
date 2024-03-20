@@ -25,7 +25,7 @@ def logout():
     logout_user()
     return jsonify({"logout": "success"})
 
-@app_views.route('/api/v1/checkuser', strict_slashes=False, methods=['GET'])
+@app_views.route('/checkuser', strict_slashes=False, methods=['GET'])
 def check_user():
     if current_user.is_authenticated:
         return jsonify(current_user.to_dict())
