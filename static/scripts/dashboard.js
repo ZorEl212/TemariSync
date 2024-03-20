@@ -23,7 +23,7 @@ $(() => {
   $assignments.attr("href", "docs?category=assignment");
   $projects.attr("href", "docs?category=project");
   $materials.attr("href", "docs?category=material");
-  $('#logout').attr('href', 'login');
+  $('#logout').attr('href', '#');
 
   $("#logout").click(() => {
     $.ajax({
