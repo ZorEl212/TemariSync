@@ -66,8 +66,8 @@ class BaseModel:
                     datetime_obj = datetime.strptime(value,  '%Y-%m-%dT%H:%M:%S.%f')
                     res[key] = datetime_obj.isoformat(timespec='microseconds')
         res['__class__'] = self.cls_name
-        if '_sa_instance_state' in res:
-            del res['_sa_instance_state']
+        for k in ['_sa_instance_state', 'password']:
+            res.pop(k) if k in res else None
         if 'tags' in res:
             res['tags'] = [tag.name for tag in res['tags']]
         return res
