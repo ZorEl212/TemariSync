@@ -25,5 +25,13 @@ def editDoc():
 def upload():
     return render_template('upload.html')
 
+@app.route('/temarisync/login/', strict_slashes=False)
+def login():
+    return render_template('login.html')
+
+@app.route('/temarisync/register/', strict_slashes=False)
+def register():
+    return render_template('register.html')
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
