@@ -7,7 +7,7 @@ $(() => {
     $materials.attr('href', 'docs?category=material');
 
 })
-const user_id = 'bd4d3614-f2b0-4f34-b6a6-c6cff2af127e';
+const user_id = '182414ec-63b4-4e70-b727-51cddbccb55a';
 if (!localStorage.getItem('user_id') || localStorage.getItem('user_id') === 'null'){
     localStorage.setItem('user_id', user_id);
 }

@@ -6,7 +6,7 @@ $(document).ready(function () {
     const $name = $('#name');
 
     $.ajax({
-        url : 'http://localhost:5001/api/v1/departments',
+        url : 'https://yeab.tech/temarisync/api/v1/departments',
         method: 'GET',
         success: function (response) {
             $.each(response, function (i, department) {
@@ -17,7 +17,7 @@ $(document).ready(function () {
     $('#registerationForm').submit(function (event) {
         event.preventDefault();
         $.ajax({
-            url: 'http://localhost:5001/api/v1/students/register',
+            url: 'https://yeab.tech/temarisync/api/v1/students/register',
             method: 'POST',
             data: JSON.stringify({
                 'email': $email.val(),

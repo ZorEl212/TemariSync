@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('#loginForm').submit(function (event) {
         event.preventDefault();
         $.ajax({
-            url: 'http://localhost:5001/api/v1/login',
+            url: 'https://yeab.tech/temarisync/api/v1/login',
             method: 'POST',
             data: JSON.stringify({
                 'email': email.val(),

@@ -54,7 +54,7 @@ $(document).ready(function () {
             return;
         }
         $.ajax({
-            url: 'http://localhost:5001/api/v1/courses/',
+            url: 'https://yeab.tech/temarisync/api/v1/courses/',
             method: 'GET',
             success: function (response) {
                 var validCourse = false;
@@ -82,7 +82,7 @@ $(document).ready(function () {
                 formData.append('file', docfile[0].files[0]);
         
                 $.ajax({
-                    url: 'http://localhost:5001/api/v1/documents/upload/' + user_id,
+                    url: 'https://yeab.tech/temarisync/api/v1/documents/upload/' + user_id,
                     method: 'POST',
                     data: formData,
                     processData: false,
