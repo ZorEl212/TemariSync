@@ -50,13 +50,14 @@
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-1">
                 <div>
                   <label class="sr-only" for="course">Course</label>
-                  <input
+                  <select
                     id="course"
                     class="w-full rounded-lg border-gray-200 p-3 text-sm"
                     placeholder="Course"
-                    type="text"
-                    id="course"
-                  />
+                    type="text">
+                    <option value="Select Course" disabled selected>Select Course</option>
+                    <!--Courses Will be added dynamically here-->
+                  </select>
                 </div>
               </div>
               <div>
