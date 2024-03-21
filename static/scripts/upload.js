@@ -29,7 +29,7 @@ $(document).ready(function () {
   const $coAuthor = $("#coAuthor")
   let category;
   const $docfile = $("#docfile");
-  const user_id = localStorage.getItem("user_id");
+  const user_id = sessionStorage.getItem("user_id");
 
   $("#uploadForm").submit(function (event) {
     event.preventDefault();
@@ -68,8 +68,8 @@ $(document).ready(function () {
       return;
     }
     if (
-      localStorage.getItem("user_id") === null ||
-      localStorage.getItem("user_id") === "null"
+      sessionStorage.getItem("user_id") === null ||
+      sessionStorage.getItem("user_id") === "null"
     ) {
       alert("Please login to upload a document.");
       return;
@@ -82,7 +82,7 @@ $(document).ready(function () {
     formData.append("coAuthor", $coAuthor.val());
     formData.append("category", category);
     formData.append("author_comment", $("#authorsNote").val());
-    formData.append("stud_id", localStorage.getItem("user_id"));
+    formData.append("stud_id", sessionStorage.getItem("user_id"));
     formData.append("file", $docfile[0].files[0]);
 
     $.ajax({

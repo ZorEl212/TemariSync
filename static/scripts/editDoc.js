@@ -6,7 +6,7 @@ $(document).ready(function () {
     const coAuthor = $('#coAuthor');
     let category;
     const cancel = $('#cancel');
-    const user_id = localStorage.getItem('user_id');
+    const user_id = sessionStorage.getItem('user_id');
     const doc_id = new URLSearchParams(window.location.search).get('doc_id');
     let course_id;
     $.ajax({

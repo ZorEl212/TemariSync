@@ -37,6 +37,11 @@ $(() => {
                 $category.text(document.category);
                 $dtitle.text(document.title);
                 $aNote.text(document.author_comment);
+                if (document.stud_id === user_id) {
+                    $editDocInfo.css('display', '');
+                    $deleteDoc.css('display', '');
+                }
+
             });
             $.ajax({
                 type: 'GET',

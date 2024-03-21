@@ -2,7 +2,7 @@ $(document).ready(function () {
     const $docs = $('#docs');
     const $searchTerm = $('#search');
     let docs;
-    const user_id = localStorage.getItem('user_id');
+    const user_id = sessionStorage.getItem('user_id');
     const category = new URLSearchParams(window.location.search).get('category');
     const filter = new URLSearchParams(window.location.search).get('filter');
     let url;

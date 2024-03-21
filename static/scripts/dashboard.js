@@ -11,7 +11,7 @@ $(() => {
         console.error(error);
         if (xhr.status === 401)
         {
-            localStorage.removeItem("user_id");
+            sessionStorage.removeItem("user_id");
             window.location.href = "login";
         }
     },
@@ -30,7 +30,7 @@ $(() => {
       url: "https://yeab.tech/temarisync/api/v1/logout",
       method: "GET",
       success: function (response) {
-        localStorage.removeItem("user_id");
+        sessionStorage.removeItem("user_id");
         window.location.href = "login";
       },
       error: function (xhr, status, error) {
