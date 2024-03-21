@@ -8,12 +8,11 @@ $(() => {
       }
     },
     error: function (xhr, status, error) {
-        console.error(error);
-        if (xhr.status === 401)
-        {
-            sessionStorage.removeItem("user_id");
-            window.location.href = "login";
-        }
+      console.error(error);
+      if (xhr.status === 401) {
+        sessionStorage.removeItem("user_id");
+        window.location.href = "login";
+      }
     },
   });
 
@@ -23,7 +22,7 @@ $(() => {
   $assignments.attr("href", "docs?category=assignment");
   $projects.attr("href", "docs?category=project");
   $materials.attr("href", "docs?category=material");
-  $('#logout').attr('href', '#');
+  $("#logout").attr("href", "#");
 
   $("#logout").click(() => {
     $.ajax({

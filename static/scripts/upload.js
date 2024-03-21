@@ -1,5 +1,22 @@
 $(document).ready(function () {
   $.ajax({
+    url: "https://yeab.tech/temarisync/api/v1/checkuser",
+    method: "GET",
+    success: function (response, status, xhr) {
+      if (xhr.status === 200) {
+        console.log(response);
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error(error);
+      if (xhr.status === 401) {
+        sessionStorage.removeItem("user_id");
+        window.location.href = "login";
+      }
+    },
+  });
+
+  $.ajax({
     url: "https://yeab.tech/temarisync/api/v1/courses/",
     method: "GET",
     success: function (response) {
@@ -19,14 +36,14 @@ $(document).ready(function () {
     error: function (xhr, status, error) {
       alert("Error occured please try again later.");
       console.error(error);
-    }
+    },
   });
 
-  const $title = $("#title")
-  const $discription = $("#description")
-  const $tags = $("#tags")
+  const $title = $("#title");
+  const $discription = $("#description");
+  const $tags = $("#tags");
   let $course = $("#course");
-  const $coAuthor = $("#coAuthor")
+  const $coAuthor = $("#coAuthor");
   let category;
   const $docfile = $("#docfile");
   const user_id = sessionStorage.getItem("user_id");

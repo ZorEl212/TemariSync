@@ -1,4 +1,21 @@
 $(document).ready(function () {
+  $.ajax({
+    url: "https://yeab.tech/temarisync/api/v1/checkuser",
+    method: "GET",
+    success: function (response, status, xhr) {
+      if (xhr.status === 200) {
+        console.log(response);
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error(error);
+      if (xhr.status === 401) {
+        sessionStorage.removeItem("user_id");
+        window.location.href = "login";
+      }
+    },
+  });
+  
   const title = $("#title");
   const description = $("#description");
   const tags = $("#tags");
