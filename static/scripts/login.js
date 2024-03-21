@@ -21,11 +21,13 @@ $(document).ready(function () {
       },
       error: function (response, status, error) {
         console.error(error);
+        $("#alertMsg").append("Invalid email or password");
         toast.style.display = "block";
 
         // Hide toast after 3 seconds (3000 milliseconds)
         setTimeout(function () {
           toast.style.display = "none";
+          $("#alertMsg").empty();
         }, 3000);
       },
     });
