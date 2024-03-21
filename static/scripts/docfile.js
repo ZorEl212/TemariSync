@@ -11,11 +11,10 @@ $(() => {
     const $download = $('#download');
     const $editDocInfo = $('#editDocInfo');
     const $deleteDoc = $('#deleteDoc');
-    const $confirmDelete = $('#confirmDelete');
     const $container = $('#container');
 
     const doc_id = new URLSearchParams(window.location.search).get('doc_id');
-    const user_id = localStorage.getItem('user_id');
+    const user_id = sessionStorage.getItem('user_id');
     let $doc;
 
     $.ajax({
