@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-export  TEMP_DOC_DIR='$(pwd)/temp/'
-export DOC_DIR='$(pwd)/TemariSync/docs/'
-export RETURN_DIR='$(pwd)TemariSync/return/'
+export  TEMP_DOC_DIR=$(pwd)'/temp/'
+export DOC_DIR=$(pwd)'/docs/'
+export RETURN_DIR=$(pwd)'/return/'
 export TS_ENV='dev'
 export TS_DB='ts_dev_db'
 export TS_DB_USER='ts_dev'
