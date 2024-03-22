@@ -2,3 +2,4 @@ file.json
 docs/
 *__pycache__*
 /return
+/node*

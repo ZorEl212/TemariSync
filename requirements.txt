@@ -1,0 +1,7 @@
+# Required pip packages
+flask
+flask-cors
+flask-login
+mysqlclient
+sqlalchemy
+gunicorn

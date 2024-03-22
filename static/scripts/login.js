@@ -23,6 +23,7 @@ $(document).ready(function () {
         console.error(error);
         $("#alertMsg").append("Invalid email or password");
         toast.style.display = "block";
+        window.location.href = "#toast";
 
         // Hide toast after 3 seconds (3000 milliseconds)
         setTimeout(function () {
