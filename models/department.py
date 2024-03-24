@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+""" Department module that holds the Department class """
+
 from models.base import BaseModel, Base
 from sqlalchemy import String, Column
 import models

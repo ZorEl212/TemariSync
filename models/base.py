@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+"""Module for base class"""
+
 from uuid import uuid4
 from datetime import datetime
 import models
@@ -5,13 +8,19 @@ from sqlalchemy.ext.declarative import declarative_base
 from os import getenv
 from sqlalchemy import String, Column, DateTime
 
+
 Base = declarative_base()
 if not getenv('STORAGE_TYPE') == 'db':
     Base = object
 
 class BaseModel:
     """Base class containing all common attributes and methods 
-    for other classes"""
+    for other classes
+    attributes:
+        id: id of the instance
+        created_at: time the instance was created
+        updated_at: time the instance was updated"""
+
     if getenv('STORAGE_TYPE') == 'db':
         id = Column(String(60), primary_key=True, nullable=False)
         created_at = Column(DateTime, default=datetime.utcnow, nullable=False)

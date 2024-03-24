@@ -1,10 +1,18 @@
+#!/usr/bin/python3
+"""Module for courses view"""
+
 from models.base import BaseModel, Base
 from sqlalchemy import String, Column, ForeignKey
 from sqlalchemy.orm import relationship
 import models
 
+
 class Course(BaseModel, Base):
-    """Course Class"""
+    """Course Class
+    attributes:
+        name: name of the course
+        dept_id: id of the department
+        documents: documents belonging to the course"""
 
     if models.storage_t == 'db':
         __tablename__ = 'courses'
@@ -18,6 +26,7 @@ class Course(BaseModel, Base):
 
         @property
         def documents(self):
+            """Returns all the documents blonging to the course"""
             all = models.storage.all()
             docs = {}
             for key, values in all.items():
